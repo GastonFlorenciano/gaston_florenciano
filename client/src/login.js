@@ -23,9 +23,10 @@ $form.addEventListener("submit", async (e) => {
     body: JSON.stringify(entries),
   }).then((response) => {
     if (response.ok) {
-      // ! REDIRIGIR AL USUARIO A LA PÁGINA PRINCIPAL
-    } else {
-      // ! MOSTRAR UN MENSAJE DE ERROR AL USUARIO
+      alert("Inicio de sesión correcto");
+      window.location.href = "/pages/orders.html";
+    } else {    
+      alert("Error al iniciar sesión");
     }
   });
 });
