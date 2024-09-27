@@ -38,11 +38,17 @@ export const signUpCtrl = async (req, res) => {
   }
 };
 
-export const signOutCtrl = (_req, res) => {
+export const signOutCtrl = (req, res) => {
   try {
+    const token = req.cookies.token;
+
+    if(token){
+      res.clearCookie("token");
+      res.status(200).json({ message: "Sesión cerrada" });
+    }else{
+      res.status(401).json({ message: "No existe sesión activa" });
+    }
     
-    // ! Completar la función signOutCtrl
-    res.status(200).json({ message: "Sign out success" });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

@@ -27,7 +27,6 @@ export const getOrderById = (id, userId) => {
   );
 };
 
-// ! FALTA IMPLEMENTAR (NO SE USA EN EL PROYECTO)
 export const deleteOrderById = (id, userId) => {
   const deletedOrder = ordersCollection.find(
     (coffee) => coffee.id === id && coffee.userId === userId

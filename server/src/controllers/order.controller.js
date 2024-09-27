@@ -1,4 +1,4 @@
-import { createOrder, getOrderById, getOrders } from "../models/order.model.js";
+import { createOrder, deleteOrderById, getOrderById, getOrders } from "../models/order.model.js";
 
 export const createOrderCtrl = (req, res) => {
   const userId = req.user.id;
@@ -29,4 +29,18 @@ export const getOrderByIdCtrl = (req, res) => {
     res.status(500).json({msg:"NO EXISTE LA ORDEN"})
   }
   res.status(200).json(orders);
+};
+
+export const deleteOrderaByIdCtrl = (req, res) => {
+
+  const userId = req.user.id;
+  const { id } = req.params;
+
+  const orders = deleteOrderById(id, userId);
+
+  if(!orders){
+    res.status(500).json({msg:"NO EXISTE LA ORDEN"})
+  }
+
+  res.status(200).json({msg:"ORDEN ELIMINADA" ,orders});
 };
