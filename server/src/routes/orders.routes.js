@@ -1,15 +1,19 @@
 import { Router } from "express";
 import {
   createOrderCtrl,
+  getOrderByIdCtrl,
   getOrdersCtrl,
 } from "../controllers/order.controller.js";
+import { validateJwt } from "../middlewares/validateJwt.js";
+import { getOrderById } from "../models/order.model.js";
 
 const ordersRouter = Router();
 
-// ! NO FUNCIONA LA RUTA /orders
-ordersRouter.get("/", getOrdersCtrl);
 
-// ! FALTAN VALIDACIONES DE DATOS
-ordersRouter.post("/", createOrderCtrl);
+ordersRouter.get("/orderByUser", validateJwt, getOrdersCtrl);
+
+ordersRouter.post("/createOrder", validateJwt, createOrderCtrl);
+
+ordersRouter.get("/orderById/:id", validateJwt, getOrderByIdCtrl)
 
 export { ordersRouter };
