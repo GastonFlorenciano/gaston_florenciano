@@ -15,7 +15,7 @@ export const signInCtrl = async (req, res) => {
 
     res.cookie("token", token, { httpOnly: true });
 
-    res.status(200).json({ token, user });
+    res.status(200).json({ token, user, message: "Sesión iniciada" });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -23,7 +23,16 @@ export const signInCtrl = async (req, res) => {
 
 export const signUpCtrl = async (req, res) => {
   try {
-    // ! Completar la función signUpCtrl
+    const { username, email, password } = req.body;
+
+    const user = await createUser(username, email, password);
+
+    const token = await createJwt(user.id);
+
+    res.cookie("token", token, { httpOnly: true });
+
+    res.status(201).json({ token, user, message: "Usuario creado con éxito" });
+
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
