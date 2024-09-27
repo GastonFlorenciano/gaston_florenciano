@@ -22,9 +22,9 @@ $form.addEventListener("submit", async (e) => {
     },
     body: JSON.stringify(entries),
   }).then((response) => {
+    console.log(response);
     if (response.ok) {
       alert("Inicio de sesión correcto");
-      window.location.href = "/pages/orders.html";
     } else {    
       alert("Error al iniciar sesión");
     }

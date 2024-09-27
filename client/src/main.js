@@ -16,6 +16,7 @@ const $root = document.getElementById("root");
 // Realizar una solicitud para obtener la sesión del usuario actual
 await fetch("http://localhost:4321/auth/me", {})
   .then((response) => {
+    console.log(response);
     // Verificar si la respuesta es exitosa
     if (response.ok) {
       return response.json(); // Convertir la respuesta a JSON
